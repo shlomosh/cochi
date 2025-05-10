@@ -12,7 +12,10 @@ import {
   themeParamsState,
   retrieveLaunchParams,
   emitEvent,
+  expandViewport,
+  requestFullscreen,
 } from '@telegram-apps/sdk-react';
+
 
 /**
  * Initializes the application and configures its dependencies.
@@ -62,6 +65,7 @@ export async function init(options: {
   // Mount all components used in the project.
   mountBackButton.ifAvailable();
   restoreInitData();
+
   await Promise.all([
     mountMiniApp.isAvailable() && mountMiniApp().then(() => {
       bindThemeParamsCssVars();
@@ -70,4 +74,12 @@ export async function init(options: {
       bindViewportCssVars();
     }),
   ]);
+
+  if (expandViewport.isAvailable()) {
+    expandViewport();
+  }
+
+  if (requestFullscreen.isAvailable()) {
+    requestFullscreen();
+  }
 }
