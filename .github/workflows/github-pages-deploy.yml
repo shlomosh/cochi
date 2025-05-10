@@ -42,6 +42,8 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          VITE_BASE_URL: '/cochi/'
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -49,7 +51,6 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload dist repository
           path: './dist'
 
       - name: Deploy to GitHub Pages
